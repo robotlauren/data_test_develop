@@ -10,7 +10,6 @@ Created by Lauren Hearn, 08.07.19 for booj testing purposes
 
 import csv
 import requests
-from collections import defaultdict
 import xml.etree.ElementTree as ET
 
 def loadRSS(url):
@@ -33,8 +32,6 @@ def parseXML(xmlfile):
             parent_map[item].remove(item)
             continue
 
-    
-    
     # get relevant info
     data = open('homes.csv', 'w')
 
@@ -85,6 +82,8 @@ def parseXML(xmlfile):
     #             rms.append(room.text)
     #         rmsli = ','.join(rms)
     #     home.append(rmsli)
+    
+    ### issues with oython not finding 'Room' elements?
 
         desc = str(parent.find('./BasicDetails/Description').text)
         if 'and' in desc:
@@ -93,7 +92,6 @@ def parseXML(xmlfile):
 
         csvwriter.writerow(home)
     data.close()
-  
       
 def main(): 
     loadRSS('http://syndication.enterprise.websiteidx.com/feeds/BoojCodeTest.xml') 
